@@ -1,5 +1,23 @@
 {
-  "item.argonauts.adamantite_ingot": "Adamantite Ingot",
+  "item.argonauts.adamantite": "Adamantite",
+  "item.argonauts.dir_adamantite": "Dir Adamantite",
+  "item.argonauts.seiros": "Seiros",
+  "item.argonauts.thousand_year_tree_sap": "THOUSAND YEAR TREE SAP",
+  "item.argonauts.blood_onyx": "Blood Onyx",
+  "item.argonauts.mithril": "Mithril",
+  "item.argonauts.nosteel": "Nosteel",
+  "item.argonauts.oricalchum": "Oricalchum",
+  "item.argonauts.under_coral": "Under Coral",
+  "item.argonauts.holydite": "Holydite",
+  "item.argonauts.oathree_walnut": "Oathree Walnut",
+  "item.argonauts.heroic_alloy": "Heroic Alloy",
+  "item.argonauts.valmarth": "Valmarth",
+  "item.argonauts.damascus": "Damascus",
+  "item.argonauts.light_metal": "Light Metal",
+  "item.argonauts.white_wood": "White Wood",
+  "item.argonauts.hihiirokane": "Hihiirokane",
+  "item.argonauts.magic_crystal": "Magic Crystal",
 
-  "itemGroup.argonauts.items": "Argonauts Items"
+  "itemGroup.argonauts.items": "Argonauts Items",
+  "itemGroup.argonauts.block": "Argonauts Blocks"
 }
