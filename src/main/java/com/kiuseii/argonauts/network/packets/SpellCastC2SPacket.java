@@ -10,11 +10,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 
-public class SpellCastPacket {
-  public SpellCastPacket() {
+public class SpellCastC2SPacket {
+  public SpellCastC2SPacket() {
   }
 
-  public SpellCastPacket(FriendlyByteBuf buf) {
+  public SpellCastC2SPacket(FriendlyByteBuf buf) {
   }
 
   public void toBytes(FriendlyByteBuf buf) {
@@ -28,9 +28,7 @@ public class SpellCastPacket {
 
       player.getCapability(ManaProvider.MANA_CAPABILITY).ifPresent(mana -> {
         if (mana.getMana() > 100) {
-          mana.consumeMana(50);
-
-          player.sendSystemMessage(Component.literal("Your mana : " + mana.getMana()).withStyle(ChatFormatting.AQUA));
+          mana.consumeMana(50, player);
         } else {
           player.sendSystemMessage(Component.literal("Not enought mana !").withStyle(ChatFormatting.RED));
         }

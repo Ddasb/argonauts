@@ -4,6 +4,7 @@ import com.kiuseii.argonauts.Argonauts;
 import com.kiuseii.argonauts.capabilities.mana.ManaProvider;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -39,7 +40,7 @@ public class ModEvents {
   public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
     if (event.side == LogicalSide.SERVER) {
       event.player.getCapability(ManaProvider.MANA_CAPABILITY).ifPresent(mana -> {
-        mana.refillMana(1);
+        mana.refillMana(1, (ServerPlayer) event.player);
       });
     }
   }

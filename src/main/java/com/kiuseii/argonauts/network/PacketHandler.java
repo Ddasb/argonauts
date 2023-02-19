@@ -1,7 +1,8 @@
 package com.kiuseii.argonauts.network;
 
 import com.kiuseii.argonauts.Argonauts;
-import com.kiuseii.argonauts.network.packets.SpellCastPacket;
+import com.kiuseii.argonauts.network.packets.SpellCastC2SPacket;
+import com.kiuseii.argonauts.network.packets.ManaDataSyncS2CPacket;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,8 +19,12 @@ public class PacketHandler {
       PROTOCOL_VERSION::equals);
 
   public static void init() {
-    CHANNEL.registerMessage(packetId++, SpellCastPacket.class, SpellCastPacket::toBytes, SpellCastPacket::new,
-        SpellCastPacket::handle);
+    CHANNEL.registerMessage(packetId++, SpellCastC2SPacket.class, SpellCastC2SPacket::toBytes, SpellCastC2SPacket::new,
+        SpellCastC2SPacket::handle);
+
+    CHANNEL.registerMessage(packetId++, ManaDataSyncS2CPacket.class, ManaDataSyncS2CPacket::toBytes,
+        ManaDataSyncS2CPacket::new,
+        ManaDataSyncS2CPacket::handle);
   }
 
   public static <MSG> void sendToServer(MSG message) {

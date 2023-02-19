@@ -1,7 +1,7 @@
 package com.kiuseii.argonauts.events;
 
 import com.kiuseii.argonauts.Argonauts;
-import com.kiuseii.argonauts.client.hud.ManaHud;
+import com.kiuseii.argonauts.client.hud.ManaHudOverlay;
 import com.kiuseii.argonauts.util.KeyBindings;
 
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,6 +19,6 @@ public class ClientModBusEvents {
 
   @SubscribeEvent
   public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-    event.registerAboveAll("mana", ManaHud.HUD_MANA);
+    event.registerAboveAll("mana", ManaHudOverlay.HUD_MANA);
   }
 }
