@@ -19,5 +19,8 @@
   "item.argonauts.magic_crystal": "Magic Crystal",
 
   "itemGroup.argonauts.items": "Argonauts Items",
-  "itemGroup.argonauts.block": "Argonauts Blocks"
+  "itemGroup.argonauts.block": "Argonauts Blocks",
+
+  "key.category.argonauts.bindings": "Argonauts Bindings",
+  "key.argonauts.spell_one": "First Spell"
 }
