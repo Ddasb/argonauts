@@ -3,6 +3,8 @@ package com.kiuseii.argonauts.network.packets;
 import java.util.function.Supplier;
 
 import com.kiuseii.argonauts.capabilities.mana.ManaProvider;
+import com.kiuseii.argonauts.spells.FireballSpell;
+import com.kiuseii.argonauts.spells.Spell;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
@@ -25,10 +27,13 @@ public class SpellCastC2SPacket {
 
     context.enqueueWork(() -> {
       ServerPlayer player = context.getSender();
+      Spell fireballSpell = new FireballSpell();
 
       player.getCapability(ManaProvider.MANA_CAPABILITY).ifPresent(mana -> {
-        if (mana.getMana() > 100) {
-          mana.consumeMana(50, player);
+        if (mana.getMana() > fireballSpell.getMana()) {
+          mana.consumeMana(fireballSpell.getMana(), player);
+
+          fireballSpell.cast(player);
         } else {
           player.sendSystemMessage(Component.literal("Not enought mana !").withStyle(ChatFormatting.RED));
         }
