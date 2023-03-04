@@ -15,6 +15,7 @@ public class ClientModBusEvents {
   @SubscribeEvent
   public static void onKeyRegister(RegisterKeyMappingsEvent event) {
     event.register(KeyBindings.SPELL_ONE_KEY);
+    event.register(KeyBindings.SHOW_STATS_KEY);
   }
 
   @SubscribeEvent

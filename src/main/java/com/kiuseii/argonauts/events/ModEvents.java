@@ -1,6 +1,7 @@
 package com.kiuseii.argonauts.events;
 
 import com.kiuseii.argonauts.Argonauts;
+import com.kiuseii.argonauts.capabilities.attributes.AttributesProvider;
 import com.kiuseii.argonauts.capabilities.mana.ManaProvider;
 
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +21,11 @@ public class ModEvents {
   public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
     if (event.getObject() instanceof Player) {
       if (!event.getObject().getCapability(ManaProvider.MANA_CAPABILITY).isPresent()) {
-        event.addCapability(new ResourceLocation(Argonauts.MOD_ID, "properties"), new ManaProvider());
+        event.addCapability(new ResourceLocation(Argonauts.MOD_ID, "mana"), new ManaProvider());
+      }
+
+      if (!event.getObject().getCapability(AttributesProvider.ATTRIBUTES_CAPABILITY).isPresent()) {
+        event.addCapability(new ResourceLocation(Argonauts.MOD_ID, "attributes"), new AttributesProvider());
       }
     }
   }
@@ -30,6 +35,12 @@ public class ModEvents {
     if (event.isWasDeath()) {
       event.getOriginal().getCapability(ManaProvider.MANA_CAPABILITY).ifPresent(oldStore -> {
         event.getEntity().getCapability(ManaProvider.MANA_CAPABILITY).ifPresent(newStore -> {
+          newStore.copyFrom(oldStore);
+        });
+      });
+
+      event.getOriginal().getCapability(AttributesProvider.ATTRIBUTES_CAPABILITY).ifPresent(oldStore -> {
+        event.getEntity().getCapability(AttributesProvider.ATTRIBUTES_CAPABILITY).ifPresent(newStore -> {
           newStore.copyFrom(oldStore);
         });
       });

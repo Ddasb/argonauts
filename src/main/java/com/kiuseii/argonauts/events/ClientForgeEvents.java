@@ -2,6 +2,7 @@ package com.kiuseii.argonauts.events;
 
 import com.kiuseii.argonauts.Argonauts;
 import com.kiuseii.argonauts.network.PacketHandler;
+import com.kiuseii.argonauts.network.packets.ShowStatsC2SPacket;
 import com.kiuseii.argonauts.network.packets.SpellCastC2SPacket;
 import com.kiuseii.argonauts.util.KeyBindings;
 
@@ -16,6 +17,10 @@ public class ClientForgeEvents {
   public static void onKeyInput(InputEvent.Key event) {
     if (KeyBindings.SPELL_ONE_KEY.consumeClick()) {
       PacketHandler.sendToServer(new SpellCastC2SPacket());
+    }
+
+    if (KeyBindings.SHOW_STATS_KEY.consumeClick()) {
+      PacketHandler.sendToServer(new ShowStatsC2SPacket());
     }
   }
 }

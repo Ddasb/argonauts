@@ -2,7 +2,9 @@ package com.kiuseii.argonauts.network;
 
 import com.kiuseii.argonauts.Argonauts;
 import com.kiuseii.argonauts.network.packets.SpellCastC2SPacket;
+import com.kiuseii.argonauts.network.packets.AttributesDataSyncS2CPacket;
 import com.kiuseii.argonauts.network.packets.ManaDataSyncS2CPacket;
+import com.kiuseii.argonauts.network.packets.ShowStatsC2SPacket;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,6 +27,14 @@ public class PacketHandler {
     CHANNEL.registerMessage(packetId++, ManaDataSyncS2CPacket.class, ManaDataSyncS2CPacket::toBytes,
         ManaDataSyncS2CPacket::new,
         ManaDataSyncS2CPacket::handle);
+
+    CHANNEL.registerMessage(packetId++, AttributesDataSyncS2CPacket.class, AttributesDataSyncS2CPacket::toBytes,
+        AttributesDataSyncS2CPacket::new,
+        AttributesDataSyncS2CPacket::handle);
+
+    CHANNEL.registerMessage(packetId++, ShowStatsC2SPacket.class, ShowStatsC2SPacket::toBytes,
+        ShowStatsC2SPacket::new,
+        ShowStatsC2SPacket::handle);
   }
 
   public static <MSG> void sendToServer(MSG message) {
