@@ -29,6 +29,8 @@ public class ShowStatsC2SPacket {
       player.getCapability(AttributesProvider.ATTRIBUTES_CAPABILITY).ifPresent(attributes -> {
         player.sendSystemMessage(Component.literal("Level : " + attributes.getLevel()).withStyle(ChatFormatting.RED));
 
+        player.sendSystemMessage(Component.literal("Mana : " + attributes.getMana()).withStyle(ChatFormatting.BLUE));
+
         player
             .sendSystemMessage(Component.literal("Excelia : " + attributes.getExcelia()).withStyle(ChatFormatting.RED));
 

@@ -11,6 +11,10 @@ import net.minecraft.server.level.ServerPlayer;
 public class AttributesCapability {
     private int level = 0;
 
+    private final int MIN_MANA = 0;
+    private final int MAX_MANA = 1000;
+    private int mana;
+
     private int excelia = 0;
 
     private int strength = 0;
@@ -60,7 +64,27 @@ public class AttributesCapability {
 
         level = level + amount;
 
-        PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, excelia, strength, endurance, dexterity,
+        PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, mana, excelia, strength, endurance, dexterity,
+                agility, magic, strength_progression, endurance_progression, dexterity_progression, agility_progression,
+                magic_progression), player);
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public void refillMana(int amount, ServerPlayer player) {
+        this.mana = Math.min(mana + amount, MAX_MANA);
+
+        PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, mana, excelia, strength, endurance, dexterity,
+                agility, magic, strength_progression, endurance_progression, dexterity_progression, agility_progression,
+                magic_progression), player);
+    }
+
+    public void consumeMana(int amount, ServerPlayer player) {
+        this.mana = Math.max(mana - amount, MIN_MANA);
+
+        PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, mana, excelia, strength, endurance, dexterity,
                 agility, magic, strength_progression, endurance_progression, dexterity_progression, agility_progression,
                 magic_progression), player);
     }
@@ -72,7 +96,7 @@ public class AttributesCapability {
     public void increaseExcelia(int amount, ServerPlayer player) {
         excelia = excelia + amount;
 
-        PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, excelia, strength, endurance, dexterity,
+        PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, mana, excelia, strength, endurance, dexterity,
                 agility, magic, strength_progression, endurance_progression, dexterity_progression, agility_progression,
                 magic_progression), player);
     }
@@ -80,7 +104,7 @@ public class AttributesCapability {
     public void consumeExcelia(int amount, ServerPlayer player) {
         excelia = Math.max(0, excelia - amount);
 
-        PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, excelia, strength, endurance, dexterity,
+        PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, mana, excelia, strength, endurance, dexterity,
                 agility, magic, strength_progression, endurance_progression, dexterity_progression, agility_progression,
                 magic_progression), player);
     }
@@ -121,13 +145,15 @@ public class AttributesCapability {
                 break;
         }
 
-        PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, excelia, strength, endurance, dexterity,
+        PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, mana, excelia, strength, endurance, dexterity,
                 agility, magic, strength_progression, endurance_progression, dexterity_progression, agility_progression,
                 magic_progression), player);
     }
 
     public void copyFrom(AttributesCapability source) {
         level = source.level;
+
+        mana = source.mana;
 
         excelia = source.excelia;
 
@@ -147,6 +173,8 @@ public class AttributesCapability {
     public void saveNBTData(CompoundTag nbt) {
         nbt.putInt("level", level);
 
+        nbt.putInt("mana", mana);
+
         nbt.putInt("excelia", excelia);
 
         nbt.putInt("strength", strength);
@@ -164,6 +192,8 @@ public class AttributesCapability {
 
     public void loadNBTData(CompoundTag nbt) {
         level = nbt.getInt("level");
+
+        level = nbt.getInt("mana");
 
         level = nbt.getInt("excelia");
 

@@ -1,7 +1,11 @@
 package com.kiuseii.argonauts.client.data;
 
+import org.w3c.dom.Attr;
+
 public class AttributesData {
   private static int level;
+
+  private static int mana;
 
   private static int excelia;
 
@@ -23,6 +27,14 @@ public class AttributesData {
 
   public static void setLevel(int newLevel) {
     AttributesData.level = newLevel;
+  }
+
+  public static int getMana() {
+    return mana;
+  }
+
+  public static void setMana(int amount) {
+    mana = amount;
   }
 
   public static int getExcelia() {
@@ -89,5 +101,4 @@ public class AttributesData {
         break;
     }
   }
-
 }

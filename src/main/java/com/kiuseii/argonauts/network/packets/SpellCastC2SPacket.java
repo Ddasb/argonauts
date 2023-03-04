@@ -2,7 +2,7 @@ package com.kiuseii.argonauts.network.packets;
 
 import java.util.function.Supplier;
 
-import com.kiuseii.argonauts.capabilities.mana.ManaProvider;
+import com.kiuseii.argonauts.capabilities.attributes.AttributesProvider;
 import com.kiuseii.argonauts.spells.FireballSpell;
 import com.kiuseii.argonauts.spells.Spell;
 
@@ -29,9 +29,9 @@ public class SpellCastC2SPacket {
       ServerPlayer player = context.getSender();
       Spell fireballSpell = new FireballSpell();
 
-      player.getCapability(ManaProvider.MANA_CAPABILITY).ifPresent(mana -> {
-        if (mana.getMana() > fireballSpell.getMana()) {
-          mana.consumeMana(fireballSpell.getMana(), player);
+      player.getCapability(AttributesProvider.ATTRIBUTES_CAPABILITY).ifPresent(attributes -> {
+        if (attributes.getMana() > fireballSpell.getMana()) {
+          attributes.consumeMana(fireballSpell.getMana(), player);
 
           fireballSpell.cast(player);
         } else {

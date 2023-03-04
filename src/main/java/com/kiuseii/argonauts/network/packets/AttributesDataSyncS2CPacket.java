@@ -11,6 +11,8 @@ import net.minecraftforge.network.NetworkEvent;
 public class AttributesDataSyncS2CPacket {
   private final int level;
 
+  private final int mana;
+
   private final int excelia;
 
   private final int strength;
@@ -25,7 +27,7 @@ public class AttributesDataSyncS2CPacket {
   private final int agility_progression;
   private final int magic_progression;
 
-  public AttributesDataSyncS2CPacket(int level, int excelia, int strength,
+  public AttributesDataSyncS2CPacket(int level, int mana, int excelia, int strength,
       int endurance,
       int dexterity,
       int agility,
@@ -36,6 +38,8 @@ public class AttributesDataSyncS2CPacket {
       int agility_progression,
       int magic_progression) {
     this.level = level;
+
+    this.mana = mana;
 
     this.excelia = excelia;
 
@@ -57,28 +61,31 @@ public class AttributesDataSyncS2CPacket {
     this.level = buf.readInt();
 
     buf.readerIndex(1);
-    this.excelia = buf.readInt();
+    this.mana = buf.readInt();
 
     buf.readerIndex(2);
-    this.strength = buf.readInt();
+    this.excelia = buf.readInt();
+
     buf.readerIndex(3);
-    this.endurance = buf.readInt();
+    this.strength = buf.readInt();
     buf.readerIndex(4);
-    this.dexterity = buf.readInt();
+    this.endurance = buf.readInt();
     buf.readerIndex(5);
-    this.agility = buf.readInt();
+    this.dexterity = buf.readInt();
     buf.readerIndex(6);
+    this.agility = buf.readInt();
+    buf.readerIndex(7);
     this.magic = buf.readInt();
 
-    buf.readerIndex(7);
-    this.strength_progression = buf.readInt();
     buf.readerIndex(8);
-    this.endurance_progression = buf.readInt();
+    this.strength_progression = buf.readInt();
     buf.readerIndex(9);
-    this.dexterity_progression = buf.readInt();
+    this.endurance_progression = buf.readInt();
     buf.readerIndex(10);
-    this.agility_progression = buf.readInt();
+    this.dexterity_progression = buf.readInt();
     buf.readerIndex(11);
+    this.agility_progression = buf.readInt();
+    buf.readerIndex(12);
     this.magic_progression = buf.readInt();
   }
 
@@ -87,28 +94,31 @@ public class AttributesDataSyncS2CPacket {
     buf.writeInt(level);
 
     buf.readerIndex(1);
-    buf.writeInt(excelia);
+    buf.writeInt(mana);
 
     buf.readerIndex(2);
-    buf.writeInt(strength);
+    buf.writeInt(excelia);
+
     buf.readerIndex(3);
-    buf.writeInt(endurance);
+    buf.writeInt(strength);
     buf.readerIndex(4);
-    buf.writeInt(dexterity);
+    buf.writeInt(endurance);
     buf.readerIndex(5);
-    buf.writeInt(agility);
+    buf.writeInt(dexterity);
     buf.readerIndex(6);
+    buf.writeInt(agility);
+    buf.readerIndex(7);
     buf.writeInt(magic);
 
-    buf.readerIndex(7);
-    buf.writeInt(strength_progression);
     buf.readerIndex(8);
-    buf.writeInt(endurance_progression);
+    buf.writeInt(strength_progression);
     buf.readerIndex(9);
-    buf.writeInt(dexterity_progression);
+    buf.writeInt(endurance_progression);
     buf.readerIndex(10);
-    buf.writeInt(agility_progression);
+    buf.writeInt(dexterity_progression);
     buf.readerIndex(11);
+    buf.writeInt(agility_progression);
+    buf.readerIndex(12);
     buf.writeInt(magic_progression);
   }
 
@@ -117,6 +127,8 @@ public class AttributesDataSyncS2CPacket {
 
     context.enqueueWork(() -> {
       AttributesData.setLevel(level);
+
+      AttributesData.setMana(mana);
 
       AttributesData.setExcelia(excelia);
 

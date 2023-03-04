@@ -1,12 +1,11 @@
 package com.kiuseii.argonauts.client.hud;
 
 import com.kiuseii.argonauts.Argonauts;
-import com.kiuseii.argonauts.client.data.ManaData;
+import com.kiuseii.argonauts.client.data.AttributesData;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -31,7 +30,7 @@ public class ManaHudOverlay {
     RenderSystem.setShaderTexture(0, EMPTY_MANA);
     GuiComponent.blit(poseStack, x - 91, y - 46, 0, 0, empty_width, 5, empty_width, 5);
 
-    int current_mana = ManaData.getMana();
+    int current_mana = AttributesData.getMana();
 
     RenderSystem.setShaderTexture(0, FILLED_MANA);
     GuiComponent.blit(poseStack, x - 90, y - 46, 0, 0, filled_width * current_mana / 1000, 5,

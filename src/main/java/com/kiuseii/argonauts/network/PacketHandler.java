@@ -3,7 +3,6 @@ package com.kiuseii.argonauts.network;
 import com.kiuseii.argonauts.Argonauts;
 import com.kiuseii.argonauts.network.packets.SpellCastC2SPacket;
 import com.kiuseii.argonauts.network.packets.AttributesDataSyncS2CPacket;
-import com.kiuseii.argonauts.network.packets.ManaDataSyncS2CPacket;
 import com.kiuseii.argonauts.network.packets.ShowStatsC2SPacket;
 
 import net.minecraft.resources.ResourceLocation;
@@ -21,16 +20,12 @@ public class PacketHandler {
       PROTOCOL_VERSION::equals);
 
   public static void init() {
+    CHANNEL.registerMessage(packetId++, AttributesDataSyncS2CPacket.class, AttributesDataSyncS2CPacket::toBytes,
+            AttributesDataSyncS2CPacket::new,
+            AttributesDataSyncS2CPacket::handle);
+
     CHANNEL.registerMessage(packetId++, SpellCastC2SPacket.class, SpellCastC2SPacket::toBytes, SpellCastC2SPacket::new,
         SpellCastC2SPacket::handle);
-
-    CHANNEL.registerMessage(packetId++, ManaDataSyncS2CPacket.class, ManaDataSyncS2CPacket::toBytes,
-        ManaDataSyncS2CPacket::new,
-        ManaDataSyncS2CPacket::handle);
-
-    CHANNEL.registerMessage(packetId++, AttributesDataSyncS2CPacket.class, AttributesDataSyncS2CPacket::toBytes,
-        AttributesDataSyncS2CPacket::new,
-        AttributesDataSyncS2CPacket::handle);
 
     CHANNEL.registerMessage(packetId++, ShowStatsC2SPacket.class, ShowStatsC2SPacket::toBytes,
         ShowStatsC2SPacket::new,
