@@ -3,7 +3,6 @@ package com.kiuseii.argonauts.network;
 import com.kiuseii.argonauts.Argonauts;
 import com.kiuseii.argonauts.network.packets.SpellCastC2SPacket;
 import com.kiuseii.argonauts.network.packets.AttributesDataSyncS2CPacket;
-import com.kiuseii.argonauts.network.packets.ShowStatsC2SPacket;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,10 +25,6 @@ public class PacketHandler {
 
     CHANNEL.registerMessage(packetId++, SpellCastC2SPacket.class, SpellCastC2SPacket::toBytes, SpellCastC2SPacket::new,
         SpellCastC2SPacket::handle);
-
-    CHANNEL.registerMessage(packetId++, ShowStatsC2SPacket.class, ShowStatsC2SPacket::toBytes,
-        ShowStatsC2SPacket::new,
-        ShowStatsC2SPacket::handle);
   }
 
   public static <MSG> void sendToServer(MSG message) {

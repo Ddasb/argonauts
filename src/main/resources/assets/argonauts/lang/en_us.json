@@ -25,5 +25,11 @@
   "key.argonauts.spell_one": "First Spell",
   "key.argonauts.show_stats": "Show stats",
 
-  "gui.attributes.title": "Attributes"
+  "gui.attributes.title": "Attributes",
+  "gui.attributes.level": "Level",
+  "gui.attributes.strength": "Strength",
+  "gui.attributes.endurance": "Endurance",
+  "gui.attributes.dexterity": "Dexterity",
+  "gui.attributes.agility": "Agility",
+  "gui.attributes.magic": "Magic"
 }

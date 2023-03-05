@@ -12,6 +12,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.w3c.dom.Attr;
 
 @Mod.EventBusSubscriber(modid = Argonauts.MOD_ID, value = Dist.CLIENT)
 public class ClientForgeEvents {
@@ -22,7 +23,6 @@ public class ClientForgeEvents {
     }
 
     if (KeyBindings.SHOW_STATS_KEY.consumeClick()) {
-
       AttributesHud hud = new AttributesHud(Component.translatable("gui.attributes.title"));
       Minecraft.getInstance().setScreen(hud);
     }
