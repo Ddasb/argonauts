@@ -34,35 +34,35 @@ public class AttributesCapability {
     }
 
     public void levelUp(int amount, ServerPlayer player) {
-        strength = strength + strength_progression;
-        endurance = endurance + endurance_progression;
-        dexterity = dexterity + dexterity_progression;
-        agility = agility + agility_progression;
-        magic = magic + magic_progression;
+        this.strength = strength + strength_progression;
+        this.endurance = endurance + endurance_progression;
+        this.dexterity = dexterity + dexterity_progression;
+        this.agility = agility + agility_progression;
+        this.magic = magic + magic_progression;
 
         int[] exceliaArray = { strength_progression, endurance_progression, dexterity_progression, agility_progression,
                 magic_progression };
         int maxProgression = Arrays.stream(exceliaArray).max().getAsInt();
 
         if (maxProgression == strength_progression) {
-            strength = strength + 50;
+            this.strength = strength + 50;
         } else if (maxProgression == endurance_progression) {
-            endurance = endurance + 50;
+            this.endurance = endurance + 50;
         } else if (maxProgression == dexterity_progression) {
-            dexterity = dexterity + 50;
+            this.dexterity = dexterity + 50;
         } else if (maxProgression == agility_progression) {
-            agility = agility + 50;
+            this.agility = agility + 50;
         } else {
-            magic = magic + 50;
+            this.magic = magic + 50;
         }
 
-        strength_progression = 0;
-        endurance_progression = 0;
-        dexterity_progression = 0;
-        agility_progression = 0;
-        magic_progression = 0;
+        this.strength_progression = 0;
+        this.endurance_progression = 0;
+        this.dexterity_progression = 0;
+        this.agility_progression = 0;
+        this.magic_progression = 0;
 
-        level = level + amount;
+        this.level = level + amount;
 
         PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, mana, excelia, strength, endurance, dexterity,
                 agility, magic, strength_progression, endurance_progression, dexterity_progression, agility_progression,
@@ -94,7 +94,7 @@ public class AttributesCapability {
     }
 
     public void increaseExcelia(int amount, ServerPlayer player) {
-        excelia = excelia + amount;
+        this.excelia = excelia + amount;
 
         PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, mana, excelia, strength, endurance, dexterity,
                 agility, magic, strength_progression, endurance_progression, dexterity_progression, agility_progression,
@@ -102,7 +102,7 @@ public class AttributesCapability {
     }
 
     public void consumeExcelia(int amount, ServerPlayer player) {
-        excelia = Math.max(0, excelia - amount);
+        this.excelia = Math.max(0, excelia - amount);
 
         PacketHandler.sendToPlayer(new AttributesDataSyncS2CPacket(level, mana, excelia, strength, endurance, dexterity,
                 agility, magic, strength_progression, endurance_progression, dexterity_progression, agility_progression,
@@ -129,19 +129,19 @@ public class AttributesCapability {
     public void increaseProgression(String statisticName, int amount, ServerPlayer player) {
         switch (statisticName) {
             case "strength":
-                strength_progression = strength_progression + amount;
+                this.strength_progression = strength_progression + amount;
                 break;
             case "endurance":
-                endurance_progression = endurance_progression + amount;
+                this.endurance_progression = endurance_progression + amount;
                 break;
             case "dexterity":
-                dexterity_progression = dexterity_progression + amount;
+                this.dexterity_progression = dexterity_progression + amount;
                 break;
             case "agility":
-                agility_progression = agility_progression + amount;
+                this.agility_progression = agility_progression + amount;
                 break;
             case "magic":
-                magic_progression = magic_progression + amount;
+                this.magic_progression = magic_progression + amount;
                 break;
         }
 
@@ -151,23 +151,23 @@ public class AttributesCapability {
     }
 
     public void copyFrom(AttributesCapability source) {
-        level = source.level;
+        this.level = source.level;
 
-        mana = source.mana;
+        this.mana = source.mana;
 
-        excelia = source.excelia;
+        this.excelia = source.excelia;
 
-        strength = source.strength;
-        endurance = source.endurance;
-        dexterity = source.dexterity;
-        agility = source.agility;
-        magic = source.magic;
+        this.strength = source.strength;
+        this.endurance = source.endurance;
+        this.dexterity = source.dexterity;
+        this.agility = source.agility;
+        this.magic = source.magic;
 
-        strength_progression = source.strength_progression;
-        endurance_progression = source.endurance_progression;
-        dexterity_progression = source.dexterity_progression;
-        agility_progression = source.agility_progression;
-        magic_progression = source.magic_progression;
+        this.strength_progression = source.strength_progression;
+        this.endurance_progression = source.endurance_progression;
+        this.dexterity_progression = source.dexterity_progression;
+        this.agility_progression = source.agility_progression;
+        this.magic_progression = source.magic_progression;
     }
 
     public void saveNBTData(CompoundTag nbt) {
@@ -191,22 +191,22 @@ public class AttributesCapability {
     }
 
     public void loadNBTData(CompoundTag nbt) {
-        level = nbt.getInt("level");
+        this.level = nbt.getInt("level");
 
-        level = nbt.getInt("mana");
+        this.mana = nbt.getInt("mana");
 
-        level = nbt.getInt("excelia");
+        this.excelia = nbt.getInt("excelia");
 
-        level = nbt.getInt("strength");
-        level = nbt.getInt("endurance");
-        level = nbt.getInt("dexterity");
-        level = nbt.getInt("agility");
-        level = nbt.getInt("magic");
+        this.strength = nbt.getInt("strength");
+        this.endurance = nbt.getInt("endurance");
+        this.dexterity = nbt.getInt("dexterity");
+        this.agility = nbt.getInt("agility");
+        this.magic = nbt.getInt("magic");
 
-        level = nbt.getInt("strength_progression");
-        level = nbt.getInt("endurance_progression");
-        level = nbt.getInt("dexterity_progression");
-        level = nbt.getInt("agility_progression");
-        level = nbt.getInt("magic_progression");
+        this.strength_progression = nbt.getInt("strength_progression");
+        this.endurance_progression = nbt.getInt("endurance_progression");
+        this.dexterity_progression = nbt.getInt("dexterity_progression");
+        this.agility_progression = nbt.getInt("agility_progression");
+        this.magic_progression = nbt.getInt("magic_progression");
     }
 }

@@ -1,11 +1,13 @@
 package com.kiuseii.argonauts.events;
 
 import com.kiuseii.argonauts.Argonauts;
+import com.kiuseii.argonauts.client.hud.AttributesHud;
 import com.kiuseii.argonauts.network.PacketHandler;
-import com.kiuseii.argonauts.network.packets.ShowStatsC2SPacket;
 import com.kiuseii.argonauts.network.packets.SpellCastC2SPacket;
 import com.kiuseii.argonauts.util.KeyBindings;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,7 +22,9 @@ public class ClientForgeEvents {
     }
 
     if (KeyBindings.SHOW_STATS_KEY.consumeClick()) {
-      PacketHandler.sendToServer(new ShowStatsC2SPacket());
+
+      AttributesHud hud = new AttributesHud(Component.translatable("gui.attributes.title"));
+      Minecraft.getInstance().setScreen(hud);
     }
   }
 }

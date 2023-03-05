@@ -14,11 +14,13 @@ import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class ManaHudOverlay {
   private static final ResourceLocation EMPTY_MANA = new ResourceLocation(Argonauts.MOD_ID,
-      "textures/mana/empty_mana.png");
+      "textures/gui/empty_mana.png");
   private static final ResourceLocation FILLED_MANA = new ResourceLocation(Argonauts.MOD_ID,
-      "textures/mana/filled_mana.png");
+      "textures/gui/filled_mana.png");
 
   public static final IGuiOverlay HUD_MANA = ((gui, poseStack, partialTick, width, height) -> {
+    Minecraft minecraft = Minecraft.getInstance();
+
     int x = width / 2;
     int y = height;
     int empty_width = 182;
@@ -36,7 +38,10 @@ public class ManaHudOverlay {
     GuiComponent.blit(poseStack, x - 90, y - 46, 0, 0, filled_width * current_mana / 1000, 5,
         filled_width * current_mana / 1000, 5);
 
-    GuiComponent.drawCenteredString(poseStack, Minecraft.getInstance().font,
-        Component.literal(Integer.toString(current_mana) + " / 1000").withStyle(ChatFormatting.AQUA), x, y - 56, 10);
+    GuiComponent.drawCenteredString(poseStack, minecraft.font,
+        Component.literal(Integer.toString(current_mana) + " / 1000")
+            .withStyle(ChatFormatting.AQUA),
+        x, y - 56,
+        10);
   });
 }

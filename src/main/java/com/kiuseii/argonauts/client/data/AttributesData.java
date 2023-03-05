@@ -1,7 +1,5 @@
 package com.kiuseii.argonauts.client.data;
 
-import org.w3c.dom.Attr;
-
 public class AttributesData {
   private static int level;
 
@@ -34,7 +32,7 @@ public class AttributesData {
   }
 
   public static void setMana(int amount) {
-    mana = amount;
+    AttributesData.mana = amount;
   }
 
   public static int getExcelia() {

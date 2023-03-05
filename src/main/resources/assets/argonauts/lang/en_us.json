@@ -23,5 +23,7 @@
 
   "key.category.argonauts.bindings": "Argonauts Bindings",
   "key.argonauts.spell_one": "First Spell",
-  "key.argonauts.show_stats": "Show stats"
+  "key.argonauts.show_stats": "Show stats",
+
+  "gui.attributes.title": "Attributes"
 }

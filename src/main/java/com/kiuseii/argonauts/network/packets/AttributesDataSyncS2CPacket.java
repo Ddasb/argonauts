@@ -4,8 +4,8 @@ import java.util.function.Supplier;
 
 import com.kiuseii.argonauts.client.data.AttributesData;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 
 public class AttributesDataSyncS2CPacket {
@@ -57,69 +57,49 @@ public class AttributesDataSyncS2CPacket {
   }
 
   public AttributesDataSyncS2CPacket(FriendlyByteBuf buf) {
-    buf.readerIndex(0);
-    this.level = buf.readInt();
+    CompoundTag nbt = buf.readNbt();
 
-    buf.readerIndex(1);
-    this.mana = buf.readInt();
+    level = nbt.getInt("level");
 
-    buf.readerIndex(2);
-    this.excelia = buf.readInt();
+    mana = nbt.getInt("mana");
 
-    buf.readerIndex(3);
-    this.strength = buf.readInt();
-    buf.readerIndex(4);
-    this.endurance = buf.readInt();
-    buf.readerIndex(5);
-    this.dexterity = buf.readInt();
-    buf.readerIndex(6);
-    this.agility = buf.readInt();
-    buf.readerIndex(7);
-    this.magic = buf.readInt();
+    excelia = nbt.getInt("excelia");
 
-    buf.readerIndex(8);
-    this.strength_progression = buf.readInt();
-    buf.readerIndex(9);
-    this.endurance_progression = buf.readInt();
-    buf.readerIndex(10);
-    this.dexterity_progression = buf.readInt();
-    buf.readerIndex(11);
-    this.agility_progression = buf.readInt();
-    buf.readerIndex(12);
-    this.magic_progression = buf.readInt();
+    strength = nbt.getInt("strength");
+    endurance = nbt.getInt("endurance");
+    dexterity = nbt.getInt("dexterity");
+    agility = nbt.getInt("agility");
+    magic = nbt.getInt("magic");
+
+    strength_progression = nbt.getInt("strength_progression");
+    endurance_progression = nbt.getInt("endurance_progression");
+    dexterity_progression = nbt.getInt("dexterity_progression");
+    agility_progression = nbt.getInt("agility_progression");
+    magic_progression = nbt.getInt("magic_progression");
   }
 
   public void toBytes(FriendlyByteBuf buf) {
-    buf.readerIndex(0);
-    buf.writeInt(level);
+    CompoundTag nbt = new CompoundTag();
 
-    buf.readerIndex(1);
-    buf.writeInt(mana);
+    nbt.putInt("level", level);
 
-    buf.readerIndex(2);
-    buf.writeInt(excelia);
+    nbt.putInt("mana", mana);
 
-    buf.readerIndex(3);
-    buf.writeInt(strength);
-    buf.readerIndex(4);
-    buf.writeInt(endurance);
-    buf.readerIndex(5);
-    buf.writeInt(dexterity);
-    buf.readerIndex(6);
-    buf.writeInt(agility);
-    buf.readerIndex(7);
-    buf.writeInt(magic);
+    nbt.putInt("excelia", excelia);
 
-    buf.readerIndex(8);
-    buf.writeInt(strength_progression);
-    buf.readerIndex(9);
-    buf.writeInt(endurance_progression);
-    buf.readerIndex(10);
-    buf.writeInt(dexterity_progression);
-    buf.readerIndex(11);
-    buf.writeInt(agility_progression);
-    buf.readerIndex(12);
-    buf.writeInt(magic_progression);
+    nbt.putInt("strength", strength);
+    nbt.putInt("endurance", endurance);
+    nbt.putInt("dexterity", dexterity);
+    nbt.putInt("agility", agility);
+    nbt.putInt("magic", magic);
+
+    nbt.putInt("strength_progression", strength_progression);
+    nbt.putInt("endurance_progression", endurance_progression);
+    nbt.putInt("dexterity_progression", dexterity_progression);
+    nbt.putInt("agility_progression", agility_progression);
+    nbt.putInt("magic_progression", magic_progression);
+
+    buf.writeNbt(nbt);
   }
 
   public boolean handle(Supplier<NetworkEvent.Context> supplier) {
