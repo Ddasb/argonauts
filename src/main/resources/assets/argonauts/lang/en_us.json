@@ -25,6 +25,9 @@
   "key.argonauts.spell_one": "First Spell",
   "key.argonauts.show_stats": "Show stats",
 
+
+  "gui.health.title": "Health",
+  "gui.mana.title": "Mana",
   "gui.attributes.title": "Attributes",
   "gui.attributes.level": "Level",
   "gui.attributes.strength": "Strength",

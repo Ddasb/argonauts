@@ -8,14 +8,20 @@ import com.kiuseii.argonauts.util.KeyBindings;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.client.gui.overlay.GuiOverlayManager;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.w3c.dom.Attr;
 
 @Mod.EventBusSubscriber(modid = Argonauts.MOD_ID, value = Dist.CLIENT)
 public class ClientForgeEvents {
+  static ResourceLocation FOOD_LEVEL_ELEMENT = new ResourceLocation("minecraft", "food_level");
+  static ResourceLocation PLAYER_HEALTH_ELEMENT = new ResourceLocation("minecraft", "player_health");
+  static ResourceLocation PLAYER_EXPERIENCE_ELEMENT = new ResourceLocation("minecraft", "experience_bar");
+
   @SubscribeEvent
   public static void onKeyInput(InputEvent.Key event) {
     if (KeyBindings.SPELL_ONE_KEY.consumeClick()) {
@@ -25,6 +31,16 @@ public class ClientForgeEvents {
     if (KeyBindings.SHOW_STATS_KEY.consumeClick()) {
       AttributesHud hud = new AttributesHud(Component.translatable("gui.attributes.title"));
       Minecraft.getInstance().setScreen(hud);
+    }
+  }
+
+  @SubscribeEvent
+  public static void onRenderGameOverlay(RenderGuiOverlayEvent.Pre event) {
+    if(event.getOverlay() == GuiOverlayManager.findOverlay(FOOD_LEVEL_ELEMENT) ||
+      event.getOverlay() == GuiOverlayManager.findOverlay(PLAYER_HEALTH_ELEMENT) ||
+      event.getOverlay() == GuiOverlayManager.findOverlay(PLAYER_EXPERIENCE_ELEMENT)
+    ) {
+      event.setCanceled(true);
     }
   }
 }

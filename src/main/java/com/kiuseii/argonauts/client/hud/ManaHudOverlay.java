@@ -22,26 +22,25 @@ public class ManaHudOverlay {
     Minecraft minecraft = Minecraft.getInstance();
 
     int x = width / 2;
-    int y = height;
-    int empty_width = 182;
-    int filled_width = 180;
+    int y = height - 30;
+    int empty_width = 125;
+    int filled_width = 123;
 
     RenderSystem.setShader(GameRenderer::getPositionTexShader);
     RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
     RenderSystem.setShaderTexture(0, EMPTY_MANA);
-    GuiComponent.blit(poseStack, x - 91, y - 46, 0, 0, empty_width, 5, empty_width, 5);
+    GuiComponent.blit(poseStack, x + 30, y, 0, 0, empty_width, 4, empty_width, 4);
 
     int current_mana = AttributesData.getMana();
 
     RenderSystem.setShaderTexture(0, FILLED_MANA);
-    GuiComponent.blit(poseStack, x - 90, y - 46, 0, 0, filled_width * current_mana / 1000, 5,
-        filled_width * current_mana / 1000, 5);
+    GuiComponent.blit(poseStack, x + 31, y, 0, 0, filled_width * current_mana / 1000, 4,
+        filled_width * current_mana / 1000, 4);
 
-    GuiComponent.drawCenteredString(poseStack, minecraft.font,
-        Component.literal(Integer.toString(current_mana) + " / 1000")
-            .withStyle(ChatFormatting.AQUA),
-        x, y - 56,
-        10);
+    GuiComponent.drawString(poseStack, minecraft.font,
+            Component.literal(Integer.toString(current_mana) + " / 1000").withStyle(ChatFormatting.WHITE),
+            x + 98, y - 9, 10
+    );
   });
 }
