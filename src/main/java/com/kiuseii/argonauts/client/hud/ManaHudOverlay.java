@@ -39,8 +39,7 @@ public class ManaHudOverlay {
         filled_width * current_mana / 1000, 4);
 
     GuiComponent.drawString(poseStack, minecraft.font,
-            Component.literal(Integer.toString(current_mana) + " / 1000").withStyle(ChatFormatting.WHITE),
-            x + 98, y - 9, 10
-    );
+        Component.literal(Integer.toString(current_mana) + " / 1000").withStyle(ChatFormatting.WHITE),
+        x - 95, y - 9, 10);
   });
 }
