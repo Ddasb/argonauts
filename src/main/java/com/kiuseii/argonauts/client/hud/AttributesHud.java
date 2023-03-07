@@ -66,15 +66,13 @@ public class AttributesHud extends Screen {
     for (int i = 0; i < textListLeft.length; i++) {
       drawString(poseStack, minecraft.font,
               textListLeft[i].withStyle(ChatFormatting.WHITE),
-              hud_x + 10, hud_y + 15 * i + 10,
-              10);
+              hud_x + 10, hud_y + 15 * i + 10, 10);
     }
 
     for (int i = 0; i < textListRight.length; i++) {
         drawString(poseStack, minecraft.font,
               textListRight[i].withStyle(ChatFormatting.WHITE),
-              hud_x + 70, hud_y + 15 * i + 10,
-              10);
+              hud_x + 70, hud_y + 15 * i + 10, 10);
     }
 
     super.render(poseStack, mouseX, mouseY, partialTick);

@@ -15,7 +15,7 @@ public class PacketHandler {
   private static int packetId = 0;
 
   private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-      new ResourceLocation(Argonauts.MOD_ID, "messages"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals,
+      new ResourceLocation(Argonauts.MOD_ID, "simple_channel"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals,
       PROTOCOL_VERSION::equals);
 
   public static void init() {

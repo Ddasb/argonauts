@@ -9,7 +9,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
@@ -22,17 +21,6 @@ public class ModEvents {
       if (!event.getObject().getCapability(AttributesProvider.ATTRIBUTES_CAPABILITY).isPresent()) {
         event.addCapability(new ResourceLocation(Argonauts.MOD_ID, "attributes"), new AttributesProvider());
       }
-    }
-  }
-
-  @SubscribeEvent
-  public static void onPlayerCloned(PlayerEvent.Clone event) {
-    if (event.isWasDeath()) {
-      event.getOriginal().getCapability(AttributesProvider.ATTRIBUTES_CAPABILITY).ifPresent(oldAttributes -> {
-        event.getEntity().getCapability(AttributesProvider.ATTRIBUTES_CAPABILITY).ifPresent(newStore -> {
-          newStore.copyFrom(oldAttributes);
-        });
-      });
     }
   }
 
