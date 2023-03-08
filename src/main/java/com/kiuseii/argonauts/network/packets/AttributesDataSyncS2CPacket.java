@@ -9,23 +9,23 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
 public class AttributesDataSyncS2CPacket {
-  private final int level;
+  private int level;
 
-  private final int mana;
+  private int mana;
 
-  private final int excelia;
+  private int excelia;
 
-  private final int strength;
-  private final int endurance;
-  private final int dexterity;
-  private final int agility;
-  private final int magic;
+  private int strength;
+  private int endurance;
+  private int dexterity;
+  private int agility;
+  private int magic;
 
-  private final int strength_progression;
-  private final int endurance_progression;
-  private final int dexterity_progression;
-  private final int agility_progression;
-  private final int magic_progression;
+  private int strength_progression;
+  private int endurance_progression;
+  private int dexterity_progression;
+  private int agility_progression;
+  private int magic_progression;
 
   public AttributesDataSyncS2CPacket(int level, int mana, int excelia, int strength,
       int endurance,
@@ -59,23 +59,23 @@ public class AttributesDataSyncS2CPacket {
   public AttributesDataSyncS2CPacket(FriendlyByteBuf buf) {
     CompoundTag nbt = buf.readNbt();
 
-    level = nbt.getInt("level");
+    this.level = nbt.getInt("level");
 
-    mana = nbt.getInt("mana");
+    this.mana = nbt.getInt("mana");
 
-    excelia = nbt.getInt("excelia");
+    this.excelia = nbt.getInt("excelia");
 
-    strength = nbt.getInt("strength");
-    endurance = nbt.getInt("endurance");
-    dexterity = nbt.getInt("dexterity");
-    agility = nbt.getInt("agility");
-    magic = nbt.getInt("magic");
+    this.strength = nbt.getInt("strength");
+    this.endurance = nbt.getInt("endurance");
+    this.dexterity = nbt.getInt("dexterity");
+    this.agility = nbt.getInt("agility");
+    this.magic = nbt.getInt("magic");
 
-    strength_progression = nbt.getInt("strength_progression");
-    endurance_progression = nbt.getInt("endurance_progression");
-    dexterity_progression = nbt.getInt("dexterity_progression");
-    agility_progression = nbt.getInt("agility_progression");
-    magic_progression = nbt.getInt("magic_progression");
+    this.strength_progression = nbt.getInt("strength_progression");
+    this.endurance_progression = nbt.getInt("endurance_progression");
+    this.dexterity_progression = nbt.getInt("dexterity_progression");
+    this.agility_progression = nbt.getInt("agility_progression");
+    this.magic_progression = nbt.getInt("magic_progression");
   }
 
   public void toBytes(FriendlyByteBuf buf) {
