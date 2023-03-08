@@ -1,14 +1,17 @@
 package com.kiuseii.argonauts.events;
 
 import com.kiuseii.argonauts.Argonauts;
+import com.kiuseii.argonauts.capabilities.attributes.AttributesCapability;
 import com.kiuseii.argonauts.capabilities.attributes.AttributesProvider;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;

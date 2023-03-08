@@ -57,18 +57,20 @@ public class ClientForgeEvents {
     Player oldPlayer = event.getOriginal();
     Player newPlayer = event.getEntity();
 
+    oldPlayer.reviveCaps();
+
     if (event.isWasDeath()) {
       Capability<AttributesCapability> cap = AttributesProvider.ATTRIBUTES_CAPABILITY;
       AttributesCapability oldCap = oldPlayer.getCapability(cap).orElse(null);
+
+      oldPlayer.invalidateCaps();
 
       if(oldCap == null) {
         return;
       }
 
-      AttributesCapability newCap = new AttributesCapability();
+      AttributesCapability newCap = newPlayer.getCapability(cap).orElse(null);
       newCap.copyFrom(oldCap);
-
-      newPlayer.getCapability(cap).ifPresent(c -> c.copyFrom(newCap));
     }
   }
 }
